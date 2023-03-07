@@ -1,0 +1,79 @@
+﻿@model IEnumerable<BiuroPodrozyApp.Models.Wycieczka>
+
+@{
+    ViewData["Title"] = "Wycieczki";
+}
+
+<h1>Wycieczki</h1>
+
+<form>
+    <div class="row">
+        <div class="col">
+            <label>Szukaj według:</label>
+            <input class="form-control" type="text" name="nazwa" value="@ViewBag.nazwa" />
+        </div>
+        <div class="col">
+            <label>Data od:</label>
+            <input class="form-control" type="date" name="dataOd" min="@DateTime.Now" value="@ViewBag.dataOd" />
+        </div>
+        <div class="col">
+            <label>Data do:</label>
+            <input class="form-control" type="date" name="dataDo" min="@DateTime.Now" value="@ViewBag.dataDo" />
+        </div>
+        <div class="col">
+            <label>Cena max:</label>
+            <input class="form-control" type="number" name="cena" value="@ViewBag.cena" />
+        </div>
+        <div class="col">
+            <label>Kliknij aby filtrować</label>
+            <button type="submit" class="btn btn-primary form-control">Szukaj</button>
+        </div>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nazwa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataOd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataDo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Opis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cena)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nazwa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataOd))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataDo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Opis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cena)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Szczegóły</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
